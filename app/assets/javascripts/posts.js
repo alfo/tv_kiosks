@@ -2,7 +2,6 @@
 // the previous post is made invisible using prevMainIndex.
 var mainIndex = 0;
 var prevMainIndex = 0;
-var loopedOnce = 0;
 
 //This function handles the youtube embedded video being paused while 
 function toggleVideo(state, div) {
@@ -57,7 +56,6 @@ function switchPosts() {
         // Increments prevMainIndex and mainIndex while ensuring that prevMainIndex is always
         // 1 behind mainIndex and that both restart at 0 after reaching the total number of posts
         if (mainIndex >= posts.length - 1) {
-            loopedOnce = 1;
             mainIndex = 0;
             prevMainIndex = posts.length -1;
         } else {
