@@ -2,7 +2,6 @@
 // the previous post is made invisible using prevMainIndex.
 var mainIndex = 0;
 var prevMainIndex = 0;
-var loopedOnce = 0;
 
 //This function handles the youtube embedded video being paused while 
 function toggleVideo(state, div) {
@@ -24,15 +23,13 @@ function switchPosts() {
     var transitionTime = 1500;
     // Retrieves the duration of each individual post through the custom 'duration' attribute
     var postDuration = $($(posts).get(mainIndex)).attr('duration') * 1000;
-
+    //If post is a video play it
+    if ($($(posts).get(mainIndex)).hasClass('video-post'))
+    {
+        toggleVideo('show',$($(posts).get(mainIndex)));
+    }
     // Only switches posts if there are more than 1 post
     if (posts.length > 1) {
-        //If post is a video play it
-        if ($($(posts).get(mainIndex)).hasClass('video-post'))
-        {
-            toggleVideo('show',$($(posts).get(mainIndex)));
-        }
-
         // Places the post with number mainIndex at the top and moves the prevMainIndex post to the back
         $($(posts).get(mainIndex)).css("z-index", 1);
         $($(posts).get(prevMainIndex)).css("z-index", 0);
@@ -57,7 +54,6 @@ function switchPosts() {
         // Increments prevMainIndex and mainIndex while ensuring that prevMainIndex is always
         // 1 behind mainIndex and that both restart at 0 after reaching the total number of posts
         if (mainIndex >= posts.length - 1) {
-            loopedOnce = 1;
             mainIndex = 0;
             prevMainIndex = posts.length -1;
         } else {
@@ -66,6 +62,7 @@ function switchPosts() {
         }
     // If less than 2 posts are available, the first available post is displayed without transitions
     } else {
+
         $($(posts).get(mainIndex)).css("z-index", 1);
         $($(posts).get(mainIndex)).css("display", "flex");
 
@@ -78,5 +75,6 @@ function switchPosts() {
 }
 
 $(document).on('turbolinks:load', function() {
-    switchPosts();
+    //Timeout needed to allow page to load, otherwise is video is first post it wont play
+    window.setTimeout(switchPosts, 1000);
 });
