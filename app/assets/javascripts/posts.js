@@ -1,14 +1,14 @@
 // The tab and post to be displayed is selected using the mainIndex variable -
 // the previous post is made invisible using prevMainIndex.
+// Function toggleVideo is adapted from https://stackoverflow.com/questions/8667882/how-to-pause-a-youtube-player-when-hiding-the-iframe
 var mainIndex = 0;
 var prevMainIndex = 0;
 
-//This function handles the youtube embedded video being paused while 
+/*This function handles the youtube embedded video being paused while
+Function adapted from https://stackoverflow.com/questions/8667882/how-to-pause-a-youtube-player-when-hiding-the-iframe
+*/
 function toggleVideo(state, div) {
-    // if state == 'hide', hide. Else: show video
-    //var div = document.getElementByClassName("video-post");
     var iframe = div.find("iframe")[0].contentWindow;
-    //div.style.display = state == 'hide' ? 'none' : '';
     func = state == 'hide' ? 'stopVideo' : 'playVideo';
     iframe.postMessage('{"event":"command","func":"' + func + '","args":""}', '*');
 }
