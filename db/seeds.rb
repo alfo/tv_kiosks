@@ -22,7 +22,7 @@ Department.create([
                   ])
 
 # Default admin user
-User.create(email: "kiosk.admin@cs.ucl.ac.uk", name: "Seed Admin", role: 1, department_id: 1, password: "default_password")
+User.create(email: "kiosk.admin@cs.ucl.ac.uk", name: "Kiosk Admin", role: 1, department_id: 1, password: "default_password")
 
 puts "-- Created All the Engineering Departments\n"
 
