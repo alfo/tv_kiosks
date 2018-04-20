@@ -57,9 +57,9 @@
         <% end %>
       <% else %>
         <% if post.category == "Video" %>
-          <%= render partial: "video_post", locals: {post: post} %>
+          <%= render partial: "kiosk/video_post", locals: {post: post} %>
         <% else %>
-          <%= render partial: "text_post", locals: {post: post} %>
+          <%= render partial: "kiosk/text_post", locals: {post: post} %>
         <% end %>
       <% end %>
     <% end %>
